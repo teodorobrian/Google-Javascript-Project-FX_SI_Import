@@ -1,0 +1,58 @@
+function saveAsCSV() {
+  // Prompts the user for the file name
+  var fileName = Browser.inputBox("Save CSV file as (e.g. myCSVFile):");
+ 
+  // Check that the file name entered wasn't empty
+  if (fileName.length !== 0) {
+    // Add the ".csv" extension to the file name
+    fileName = fileName + ".csv";
+    // Convert the range data to CSV format
+    var csvFile = convertRangeToCsvFile_(fileName);
+    // Create a file in Drive with the given name, the CSV data and MimeType (file type) and save to "FXAll Templates" Folder in Google Drive
+    var folder = DriveApp.getFoldersByName("FXAll Templates").next();
+    var ff = folder.createFile(fileName, csvFile, MimeType.CSV);
+  }
+  else {
+    Browser.msgBox("Error: Please enter a CSV file name.");
+  }
+}
+ 
+function convertRangeToCsvFile_(csvFileName) {
+  // Get available data range in the spreadsheet
+  
+  try {
+    var csvFile = undefined;
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheets()[1];
+    var rows = sheet.getDataRange();
+    var numRows = rows.getNumRows();
+    var data = rows.getValues();
+ 
+    // Loop through the data in the range and build a string with the CSV data
+    if (data.length > 1) {
+      var csv = "";
+      for (var row = 0; row < data.length; row++) {
+        for (var col = 0; col < data[row].length; col++) {
+          if (data[row][col].toString().indexOf(",") != -1) {
+            data[row][col] = "\"" + data[row][col] + "\"";
+          }
+        }
+ 
+        // Join each row's columns
+        // Add a carriage return to end of each row, except for the last one
+        if (row < data.length-1) {
+          csv += data[row].join(",") + "\r\n";
+        }
+        else {
+          csv += data[row];
+        }
+      }
+      csvFile = csv;
+    }
+    return csvFile;
+  }
+  catch(err) {
+    Logger.log(err);
+    Browser.msgBox(err);
+  }
+}
