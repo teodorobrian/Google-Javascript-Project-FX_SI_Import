@@ -1,0 +1,42 @@
+//Function to clear data
+
+function clearData() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var SI_Name = sheet.getRange("B3").clearContent();
+  var Currency = sheet.getRange("B4").clearContent();
+  var Account_Name = sheet.getRange("B5").clearContent();
+  var Start_Date = sheet.getRange("B6").clearContent();
+  var End_Date = sheet.getRange("B7").clearContent();
+  var BIC1 = sheet.getRange("B11").clearContent();
+  var Name1 = sheet.getRange("B12").clearContent();
+  var Account_Num1 = sheet.getRange("B13").clearContent();
+  var RAddress1 = sheet.getRange("B14").clearContent();
+  var RAddress2 = sheet.getRange("B15").clearContent();
+  var City1 = sheet.getRange("B16").clearContent();
+  var ABA_Num1 = sheet.getRange("B17").clearContent();
+  var Chips_UID1 = sheet.getRange("B18").clearContent();
+  var UK1 = sheet.getRange("B19").clearContent();
+  var Clearing_Code1 = sheet.getRange("B20").clearContent();
+  var Net_Settle1 = sheet.getRange("B21").clearContent();
+  var Standard_SI1 = sheet.getRange("B22").clearContent();
+  var BIC2 = sheet.getRange("B24").clearContent();
+  var Name2 = sheet.getRange("B25").clearContent();
+  var Account_Num2 = sheet.getRange("B26").clearContent();
+  var IAddress1 = sheet.getRange("B27").clearContent();
+  var IAddress2 = sheet.getRange("B28").clearContent();
+  var City2 = sheet.getRange("B29").clearContent();
+  var ABA_Num2 = sheet.getRange("B30").clearContent();
+  var Chips_UID2 = sheet.getRange("B31").clearContent();
+  var UK2 = sheet.getRange("B32").clearContent();
+  var Clearing_Code2 = sheet.getRange("B33").clearContent();
+  var Net_Settle2 = sheet.getRange("B34").clearContent();
+  var Standard_SI2 = sheet.getRange("B35").clearContent();
+  var Beneficiary_Name = sheet.getRange("B37").clearContent();
+  var Beneficiary_Line1 = sheet.getRange("B38").clearContent();
+  var Beneficiary_Line2 = sheet.getRange("B39").clearContent();
+  var Beneficiary_Line3 = sheet.getRange("B40").clearContent();
+  var OBI = sheet.getRange("B41").clearContent();
+}
+
+
+
