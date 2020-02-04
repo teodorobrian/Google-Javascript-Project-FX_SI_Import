@@ -1,0 +1,77 @@
+// custom menu function
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Custom Menu')
+      .addItem('Save Data','saveData')
+      .addToUi();
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var csvMenuEntries = [{name: "Run Export to CSV", functionName: "saveAsCSV"}];
+  ss.addMenu("Export To CSV", csvMenuEntries);
+}
+
+
+// function to save data with a button
+
+function saveData() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheets()[1];
+  var SI_Name = sheet.getRange('Form!B3').getValue();
+  var Currency = sheet.getRange('Form!B4').getValue();
+  var Account_Name = sheet.getRange('Form!B5').getValue();
+  var Start_Date = sheet.getRange('Form!B6').getValue();
+  var End_Date = sheet.getRange('Form!B7').getValue();
+  var Auto_Enrich = sheet.getRange('Form!B8').getValue();
+  var SWIFT_Confirm = sheet.getRange('Form!B9').getValue();
+  
+  //***** Entering Receiving/Beneficiary Information *****
+  
+  var BIC1 = sheet.getRange('Form!B11').getValue();
+  var Name1 = sheet.getRange('Form!B12').getValue();
+  var Account_Num1 = sheet.getRange('Form!B13').getValue();
+  var RAddress1 = sheet.getRange('Form!B14').getValue();
+  var RAddress2 = sheet.getRange('Form!B15').getValue();
+  // RAddress1 and RAddress 2 is the Receiving Institution Address Line 1 and Line 2
+  var City1 = sheet.getRange('Form!B16').getValue();
+  var ABA_Num1 = sheet.getRange('Form!B17').getValue();
+  var Chips_UID1 = sheet.getRange('Form!B18').getValue();
+  var UK1 = sheet.getRange('Form!B19').getValue();
+  var Clearing_Code1 = sheet.getRange('Form!B20').getValue();
+  var Net_Settle1 = sheet.getRange('Form!B21').getValue();
+  var Standard_SI1 = sheet.getRange('Form!B22').getValue();
+  // 1 at the end denotes Receiving/Beneficiary section information except for RAddress1 and RAddress2
+  
+  //***** Entering Intermediary Information *****
+  
+  var BIC2 = sheet.getRange('Form!B24').getValue();
+  var Name2 = sheet.getRange('Form!B25').getValue();
+  var Account_Num2 = sheet.getRange('Form!B26').getValue();
+  var IAddress1 = sheet.getRange('Form!B27').getValue();
+  var IAddress2 = sheet.getRange('Form!B28').getValue();
+  // IAddress1 and IAddress 2 is the Intermediary Institution Address Line 1 and Line 2
+  var City2 = sheet.getRange('Form!B29').getValue();
+  var ABA_Num2 = sheet.getRange('Form!B30').getValue();
+  var Chips_UID2 = sheet.getRange('Form!B31').getValue();
+  var UK2 = sheet.getRange('Form!B32').getValue();
+  var Clearing_Code2 = sheet.getRange('Form!B33').getValue();
+  var Net_Settle2 = sheet.getRange('Form!B34').getValue();
+  var Standard_SI2 = sheet.getRange('Form!B35').getValue();
+  // 2 at the end denotes Intermediary section information
+  
+  //***** Entering Beneficiary Information *****
+  
+  var Beneficiary_Tag = sheet.getRange('Form!B42').getValue();
+  var Line3 = sheet.getRange('Form!B43').getValue();
+  var Line4 = sheet.getRange('Form!B44').getValue();
+  var Line5 = sheet.getRange('Form!B45').getValue();
+  var Line6 = sheet.getRange('Form!B46').getValue();
+  var Line7 = sheet.getRange('Form!B47').getValue();
+  var Line8 = sheet.getRange('Form!B48').getValue();
+  
+  //***** Append Rows in new sheet *****
+  
+  sheet.appendRow([SI_Name,Currency,Account_Name,Start_Date,End_Date,Auto_Enrich,SWIFT_Confirm,
+                   BIC1,Name1,Account_Num1,RAddress1,RAddress2,City1,ABA_Num1,Chips_UID1,UK1,Clearing_Code1,Net_Settle1,Standard_SI1,
+                   BIC2,Name2,Account_Num2,IAddress1,IAddress2,City2,ABA_Num2,Chips_UID2,UK2,Clearing_Code2,Net_Settle2,Standard_SI2,
+                   Beneficiary_Tag,Line3,Line4,Line5]);
+}
+
